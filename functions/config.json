@@ -8,5 +8,10 @@
         "name": "esami",
         "private": true,
         "run_as_system": true
+    },
+    {
+        "name": "insertesame",
+        "private": true,
+        "run_as_system": true
     }
 ]

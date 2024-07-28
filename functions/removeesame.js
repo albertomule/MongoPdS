@@ -1,4 +1,4 @@
-exports = function(payload, response) {
+exports = async function(payload, response) {
   const {c} = payload.query;
   var collection = context.services.get("mongodb-atlas").db("PortalePdS").collection("Esami");
   /*var t = collection.count({codice: c})

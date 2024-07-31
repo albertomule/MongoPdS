@@ -1,12 +1,12 @@
-exports = function({ query, headers, body}, response) {
+exports = function(payload, response) {
     // Data can be extracted from the request as follows:
 
     // Query params, e.g. '?arg1=hello&arg2=world' => {arg1: "hello", arg2: "world"}
-    const {a} = query;
+    const {a} = payload.query;
 
     // Raw request body (if the client sent one).
     // This is a binary object that can be accessed as a string using .text()
-   // const reqBody = body;
+    const reqBody = payload.body;
   
    // console.log("Request body:", reqBody);
 
@@ -25,7 +25,7 @@ exports = function({ query, headers, body}, response) {
   var collection = context.services.get("mongodb-atlas").db("PortalePdS").collection("Regolamenti");
   var t = collection.count({anno: a})
   .then( (cnt) => { if ( cnt === 0 ) {
-    var doc={"anno": a, "esami": JSON.parse(body.text())};
+    var doc={"anno": a, "esami": JSON.parse(reqBody)};
     collection.insertOne(doc);
     return doc;
     } else {

@@ -23,7 +23,7 @@ exports = function(payload, response) {
   var collection = context.services.get("mongodb-atlas").db("PortalePdS").collection("Regolamenti");
   var t = collection.count({anno: a})
   .then( (cnt) => { if ( cnt === 0 ) {
-    var doc={"anno": a, "esami": reqBody.text(), "test1": obj.exam1List.exam_name};
+    var doc={"anno": a, "esami": reqBody.text(), "test1": obj.exam1List};
     collection.insertOne(doc);
     return doc;
     } else {

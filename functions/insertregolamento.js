@@ -19,10 +19,11 @@ exports = function(payload, response) {
 
     // The return value of the function is sent as the response back to the client
     // when the "Respond with Result" setting is set.
+  var obj = JSON.parse(reqBody.text())
   var collection = context.services.get("mongodb-atlas").db("PortalePdS").collection("Regolamenti");
   var t = collection.count({anno: a})
   .then( (cnt) => { if ( cnt === 0 ) {
-    var doc={"anno": a, "esami": reqBody.text()};
+    var doc={"anno": a, "esami": reqBody.text(), "test1": obj.exam1List.exam_name};
     collection.insertOne(doc);
     return doc;
     } else {

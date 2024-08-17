@@ -6,7 +6,7 @@ exports = function(payload, response) {
 
   var obj = JSON.parse(reqBody.text());
   console.log(obj);
-  console.log(obj[4]);
+  console.log(JSON.parse(obj[4]));
   console.log(JSON.parse(Object.values(obj[4])));
   var collection = context.services.get("mongodb-atlas").db("PortalePdS").collection("Piani");
   var collectionesami = context.services.get("mongodb-atlas").db("PortalePdS").collection("Esami");

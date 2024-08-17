@@ -9,7 +9,7 @@ exports = function(payload, response) {
   var collectionesami = context.services.get("mongodb-atlas").db("PortalePdS").collection("Esami");
   var t = collection.count({matricola: m})
   .then( (cnt) => { if ( cnt === 0 ) {
-    var esami = obj[4];
+    var esami = Object.values(obj[4]);
     var approvato = true;
     for(esame of esami){
       var tmp = collectionesami.count({codice: esame.exam_code})

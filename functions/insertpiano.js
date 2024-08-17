@@ -17,18 +17,23 @@ exports = function(payload, response) {
     var approvato = true;
     var i=0;
     var l=esami.examList.length;
+    console.log("inizio while i: " + i);
+    console.log("inizio while l: " + l);
+    console.log("inizio while approvato: " + approvato);
     while(approvato && i<l){
       var tmp = collectionesami.count({codice: esami.examList[i].exam_code})
       .then( (count) => { if ( count === 0 ) {
-        //console.log(count);
-        //console.log(this.approvato);
-        //console.log(approvato);
+        console.log("COUNT: " + count);
+        console.log("THISAPPROVATO1: " + this.approvato);
+        console.log("APPROVATO1: " + approvato);
         approvato = false;
-        //console.log(this.approvato);
-        //console.log(approvato);
+        console.log("THISAPPROVATO2: " + this.approvato);
+        console.log("APPROVATO2: " + approvato);
       } else {
         i++;
+        console.log("i: " + i);
       }});
+      console.log("TMP: " + tmp);
     }
     /*for(var i=0, l=esami.examList.length; i<l; i++){
       var tmp = collectionesami.count({codice: esami.examList[i].exam_code})

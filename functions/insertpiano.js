@@ -20,13 +20,13 @@ exports = function(payload, response) {
     console.log("inizio while i: " + i);
     console.log("inizio while l: " + l);
     console.log("inizio while approvato: " + approvato);
-    while(approvato===true && i<l){
+    while((approvato & true) == true && i<l){
       let tmp = collectionesami.count({codice: esami.examList[i].exam_code})
       .then( (count) => { if ( count === 0 ) {
         console.log("COUNT: " + count);
         //console.log("THISAPPROVATO1: " + this.approvato);
         console.log("APPROVATO1: " + approvato);
-        approvato = false;
+        approvato = approvato & false;
         //console.log("THISAPPROVATO2: " + this.approvato);
         console.log("APPROVATO2: " + approvato);
       } else {

@@ -6,13 +6,13 @@ exports = function(payload, response) {
 
   var obj = JSON.parse(reqBody.text());
   console.log(obj);
-  console.log(JSON.parse(obj[4]));
-  console.log(JSON.parse(Object.values(obj[4])));
+  console.log(obj[4][0]);
+  console.log(Object.values(obj[4]));
   var collection = context.services.get("mongodb-atlas").db("PortalePdS").collection("Piani");
   var collectionesami = context.services.get("mongodb-atlas").db("PortalePdS").collection("Esami");
   var t = collection.count({matricola: m})
   .then( (cnt) => { if ( cnt === 0 ) {
-    var esami = Object.values(obj[4]);
+    var esami = obj[4][0];
     var approvato = true;
     for(esame of esami){
       var tmp = collectionesami.count({codice: esame.exam_code})

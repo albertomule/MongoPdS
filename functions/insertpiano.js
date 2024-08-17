@@ -19,7 +19,7 @@ exports = function(payload, response) {
       .then( (count) => { if ( count === 0 ) {
         approvato = false;
       }});
-      console.log(tmp)
+     // console.log(tmp)
     }
     var doc={"matricola": m, "primo": JSON.stringify(obj[0]), "secondo": JSON.stringify(obj[1]), "terzo": JSON.stringify(obj[2]), "comp": JSON.stringify(obj[3]), "esami": JSON.stringify(obj[4]), "approvato": approvato};
     collection.insertOne(doc);

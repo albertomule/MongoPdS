@@ -5,6 +5,9 @@ exports = function(payload, response) {
    // console.log("Request body:", reqBody);
 
   var obj = JSON.parse(reqBody.text());
+  console.log(obj);
+  console.log(obj[4]);
+  console.log(Object.values(obj[4]));
   var collection = context.services.get("mongodb-atlas").db("PortalePdS").collection("Piani");
   var collectionesami = context.services.get("mongodb-atlas").db("PortalePdS").collection("Esami");
   var t = collection.count({matricola: m})

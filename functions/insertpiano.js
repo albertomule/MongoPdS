@@ -5,10 +5,10 @@ exports = function(payload, response) {
    // console.log("Request body:", reqBody);
 
   var obj = JSON.parse(reqBody.text());
-  console.log(obj);
-  console.log(obj[4]);
-  console.log(obj[4].examList);
-  console.log(obj[4].examList[0].exam_code);
+ // console.log(obj);
+ // console.log(obj[4]);
+  //console.log(obj[4].examList);
+  //console.log(obj[4].examList[0].exam_code);
   var collection = context.services.get("mongodb-atlas").db("PortalePdS").collection("Piani");
   var collectionesami = context.services.get("mongodb-atlas").db("PortalePdS").collection("Esami");
   var t = collection.count({matricola: m})
@@ -20,14 +20,14 @@ exports = function(payload, response) {
     console.log("inizio while i: " + i);
     console.log("inizio while l: " + l);
     console.log("inizio while approvato: " + approvato);
-    while(approvato==true && i<l){
+    while(approvato===true && i<l){
       let tmp = collectionesami.count({codice: esami.examList[i].exam_code})
       .then( (count) => { if ( count === 0 ) {
         console.log("COUNT: " + count);
-        console.log("THISAPPROVATO1: " + this.approvato);
+        //console.log("THISAPPROVATO1: " + this.approvato);
         console.log("APPROVATO1: " + approvato);
         approvato = false;
-        console.log("THISAPPROVATO2: " + this.approvato);
+        //console.log("THISAPPROVATO2: " + this.approvato);
         console.log("APPROVATO2: " + approvato);
       } else {
         i++;

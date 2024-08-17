@@ -19,7 +19,7 @@ exports = function(payload, response) {
       var tmp = collectionesami.count({codice: esami.examList[i].exam_code})
       .then( (count) => { if ( count === 0 ) {
         console.log(count)
-        approvato = false;
+        this.approvato = false;
       }});
       console.log(tmp)
     }

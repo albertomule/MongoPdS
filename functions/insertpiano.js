@@ -14,14 +14,14 @@ exports = function(payload, response) {
   var t = collection.count({matricola: m})
   .then( (cnt) => { if ( cnt === 0 ) {
     var esami = obj[4];
-    var approvato = true;
-    var i=0;
-    var l=esami.examList.length;
+    let approvato = true;
+    let i=0;
+    let l=esami.examList.length;
     console.log("inizio while i: " + i);
     console.log("inizio while l: " + l);
     console.log("inizio while approvato: " + approvato);
     while(approvato && i<l){
-      var tmp = collectionesami.count({codice: esami.examList[i].exam_code})
+      let tmp = collectionesami.count({codice: esami.examList[i].exam_code})
       .then( (count) => { if ( count === 0 ) {
         console.log("COUNT: " + count);
         console.log("THISAPPROVATO1: " + this.approvato);

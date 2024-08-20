@@ -49,7 +49,7 @@ exports = function(payload, response) {
       }});
       console.log(tmp);
     }*/
-    var doc={"matricola": m, "primo": JSON.stringify(obj[0]), "secondo": JSON.stringify(obj[1]), "terzo": JSON.stringify(obj[2]), "comp": JSON.stringify(obj[3]), "esami": JSON.stringify(obj[4]), "approvato": approvato};
+    var doc={"matricola": m, "primo": JSON.stringify(obj[0]), "secondo": JSON.stringify(obj[1]), "terzo": JSON.stringify(obj[2]), "comp": JSON.stringify(obj[3]), "esami": JSON.stringify(obj[4]), "approvato": boolObj.valueOf()};
     collection.insertOne(doc);
     return doc;
     } else {

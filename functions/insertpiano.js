@@ -20,7 +20,7 @@ exports = function(payload, response) {
     console.log("inizio while i: " + i);
     console.log("inizio while l: " + l);
     console.log("inizio while approvato: " + approvato);
-    while(approvato == true && i<l){
+    while((approvato === true) && i<l){
       let tmp = collectionesami.count({codice: esami.examList[i].exam_code})
       .then( (count) => { if ( count === 0 ) {
         console.log("COUNT: " + count);

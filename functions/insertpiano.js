@@ -34,7 +34,7 @@ exports = function(payload, response) {
       } else {
         i++;
         console.log("i: " + i);
-      }});
+      }}).catch(err => console.error("Failed to count documents: ", err));
       console.log("TMP: " + tmp);
     };
     /*for(var i=0, l=esami.examList.length; i<l; i++){
@@ -54,6 +54,6 @@ exports = function(payload, response) {
     return doc;
     } else {
     return ("Gia’ presente");
-    } } );
+    } } ).catch(err => console.error("Failed to count documents: ", err));
   return t;
 };

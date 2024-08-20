@@ -27,11 +27,13 @@ exports = function(payload, response) {
         console.log("COUNT: " + count);
         //console.log("THISAPPROVATO1: " + this.approvato);
         console.log("APPROVATO1: " + boolObj.valueOf());
+        console.log("i1: " + i);
         //approvato = false;
         boolObj.setFalse();
         i=l;
         //console.log("THISAPPROVATO2: " + this.approvato);
         console.log("APPROVATO2: " + boolObj.valueOf());
+        console.log("i2: " + i);
       } else {
         i++;
         console.log("i: " + i);

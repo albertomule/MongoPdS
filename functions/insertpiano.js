@@ -36,7 +36,7 @@ exports = function(payload, response) {
         console.log("i: " + i);
       }});
       console.log("TMP: " + tmp);
-    }
+    };
     /*for(var i=0, l=esami.examList.length; i<l; i++){
       var tmp = collectionesami.count({codice: esami.examList[i].exam_code})
       .then( (count) => { if ( count === 0 ) {

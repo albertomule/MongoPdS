@@ -22,9 +22,9 @@ exports = function(payload, response) {
     console.log("inizio while l: " + l);
     //console.log("inizio while approvato: " + approvato);
     while(i<l){
-      let tmp = collectionesami.count({codice: esami.examList[i].exam_code})
-      .then( (count) => { if ( count === 0 ) {
-        console.log("COUNT: " + count);
+      collectionesami.count({codice: esami.examList[i].exam_code})
+      .then( (ct) => { if ( ct === 0 ) {
+        console.log("COUNT: " + ct);
         //console.log("THISAPPROVATO1: " + this.approvato);
         console.log("APPROVATO1: " + boolObj.valueOf());
         console.log("i1: " + i);
@@ -38,7 +38,6 @@ exports = function(payload, response) {
         i++;
         console.log("i: " + i);
       }}).catch(err => console.error("Failed to count documents: ", err));
-      console.log("TMP: " + tmp);
     };
     /*for(var i=0, l=esami.examList.length; i<l; i++){
       var tmp = collectionesami.count({codice: esami.examList[i].exam_code})

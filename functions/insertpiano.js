@@ -1,27 +1,16 @@
 exports = function(payload, response) {
-    const {m} = payload.query;
-    const reqBody = payload.body;
-  
-   // console.log("Request body:", reqBody);
+  const {m} = payload.query;
+  const reqBody = payload.body;
 
   var obj = JSON.parse(reqBody.text());
- // console.log(obj);
- // console.log(obj[4]);
-  //console.log(obj[4].examList);
-  //console.log(obj[4].examList[0].exam_code);
   var collection = context.services.get("mongodb-atlas").db("PortalePdS").collection("Piani");
   var collectionesami = context.services.get("mongodb-atlas").db("PortalePdS").collection("Esami");
   var t = collection.count({matricola: m})
   .then( (cnt) => { if ( cnt === 0 ) {
     var esami = obj[4];
-   // let approvato = true;
     const boolObj = {flag: true, valueOf() { return this.flag; }, setFalse() {this.flag = false;}};
     let i=0;
     let l=esami.examList.length;
-    console.log("inizio while i: " + i);
-    console.log("inizio while l: " + l);
-    let xd=0;
-    //console.log("inizio while approvato: " + approvato);
     function test(){
       if (boolObj.valueOf() === true && i<l) {
           return collectionesami.count({codice: esami.examList[i].exam_code}).then(count => {

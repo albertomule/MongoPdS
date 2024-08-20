@@ -30,6 +30,7 @@ exports = function(payload, response) {
                   return boolObj.valueOf();
               } else {
                   // run the cycle again
+                  i++;
                   return test();
               }
           });

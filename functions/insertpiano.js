@@ -21,7 +21,7 @@ exports = function(payload, response) {
     console.log("inizio while i: " + i);
     console.log("inizio while l: " + l);
     //console.log("inizio while approvato: " + approvato);
-    while((boolObj.valueOf()) && (i<l)){
+    while(i<l){
       let tmp = collectionesami.count({codice: esami.examList[i].exam_code})
       .then( (count) => { if ( count === 0 ) {
         console.log("COUNT: " + count);
@@ -29,6 +29,7 @@ exports = function(payload, response) {
         console.log("APPROVATO1: " + boolObj.valueOf());
         //approvato = false;
         boolObj.setFalse();
+        i=l;
         //console.log("THISAPPROVATO2: " + this.approvato);
         console.log("APPROVATO2: " + boolObj.valueOf());
       } else {

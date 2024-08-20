@@ -22,7 +22,30 @@ exports = function(payload, response) {
     console.log("inizio while l: " + l);
     let xd=0;
     //console.log("inizio while approvato: " + approvato);
-    do{
+    function test(){
+      if (boolObj.valueOf() === true && i<l) {
+          return collectionesami.count({codice: esami.examList[i].exam_code}).then(count => {
+              if (count === 0) {
+                  boolObj.setFalse();
+                  return boolObj.valueOf();
+              } else {
+                  // run the cycle again
+                  return test();
+              }
+          });
+      } else {
+          return Promise.resolve(boolObj.valueOf());
+      }
+    }
+    test().then(finalResult => {
+        console.log(finalResult);
+      var doc={"matricola": m, "primo": JSON.stringify(obj[0]), "secondo": JSON.stringify(obj[1]), "terzo": JSON.stringify(obj[2]), "comp": JSON.stringify(obj[3]), "esami": JSON.stringify(obj[4]), "approvato": finalResult};
+    collection.insertOne(doc);
+    return doc;
+    }).catch(err => {
+        console.log(err);
+    })
+   /* do{
       let tmp = collectionesami.count({codice: esami.examList[i].exam_code})
       .then( (count) => { if ( count === 0 ) {
         xd++;
@@ -43,7 +66,7 @@ exports = function(payload, response) {
       }}).catch(err => console.error("Failed to count documents: ", err));
       console.log("TMP: " + tmp);
     }
-    while(i<l);
+    while(i<l);*/
     /*for(var i=0, l=esami.examList.length; i<l; i++){
       var tmp = collectionesami.count({codice: esami.examList[i].exam_code})
       .then( (count) => { if ( count === 0 ) {
@@ -56,9 +79,9 @@ exports = function(payload, response) {
       }});
       console.log(tmp);
     }*/
-    var doc={"matricola": m, "primo": JSON.stringify(obj[0]), "secondo": JSON.stringify(obj[1]), "terzo": JSON.stringify(obj[2]), "comp": JSON.stringify(obj[3]), "esami": JSON.stringify(obj[4]), "approvato": boolObj.valueOf()};
+    /*var doc={"matricola": m, "primo": JSON.stringify(obj[0]), "secondo": JSON.stringify(obj[1]), "terzo": JSON.stringify(obj[2]), "comp": JSON.stringify(obj[3]), "esami": JSON.stringify(obj[4]), "approvato": boolObj.valueOf()};
     collection.insertOne(doc);
-    return doc;
+    return doc;*/
     } else {
     return ("Gia’ presente");
     } } ).catch(err => console.error("Failed to count documents: ", err));

@@ -14,21 +14,23 @@ exports = function(payload, response) {
   var t = collection.count({matricola: m})
   .then( (cnt) => { if ( cnt === 0 ) {
     var esami = obj[4];
-    let approvato = true;
+   // let approvato = true;
+    const boolObj = {flag: true, valueOf() { return this.flag; }};
     let i=0;
     let l=esami.examList.length;
     console.log("inizio while i: " + i);
     console.log("inizio while l: " + l);
     console.log("inizio while approvato: " + approvato);
-    while((approvato === true) && i<l){
+    while((boolObj.valueOf() === true) && i<l){
       let tmp = collectionesami.count({codice: esami.examList[i].exam_code})
       .then( (count) => { if ( count === 0 ) {
         console.log("COUNT: " + count);
         //console.log("THISAPPROVATO1: " + this.approvato);
-        console.log("APPROVATO1: " + approvato);
-        approvato = false;
+        console.log("APPROVATO1: " + boolObj.valueOf());
+        //approvato = false;
+        boolObj.flag = false;
         //console.log("THISAPPROVATO2: " + this.approvato);
-        console.log("APPROVATO2: " + approvato);
+        console.log("APPROVATO2: " + boolObj.valueOf());
       } else {
         i++;
         console.log("i: " + i);

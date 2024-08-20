@@ -20,7 +20,7 @@ exports = function(payload, response) {
     let l=esami.examList.length;
     console.log("inizio while i: " + i);
     console.log("inizio while l: " + l);
-    console.log("inizio while approvato: " + approvato);
+    //console.log("inizio while approvato: " + approvato);
     while((boolObj.valueOf() === true) && i<l){
       let tmp = collectionesami.count({codice: esami.examList[i].exam_code})
       .then( (count) => { if ( count === 0 ) {

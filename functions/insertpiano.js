@@ -15,7 +15,7 @@ exports = function(payload, response) {
   .then( (cnt) => { if ( cnt === 0 ) {
     var esami = obj[4];
    // let approvato = true;
-    const boolObj = {flag: true, valueOf() { return this.flag; }, setFalse() {this.flag = false}};
+    const boolObj = {flag: true, valueOf() { return this.flag; }, setFalse() {this.flag = false;}};
     let i=0;
     let l=esami.examList.length;
     console.log("inizio while i: " + i);

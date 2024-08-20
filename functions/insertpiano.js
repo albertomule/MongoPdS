@@ -20,11 +20,14 @@ exports = function(payload, response) {
     let l=esami.examList.length;
     console.log("inizio while i: " + i);
     console.log("inizio while l: " + l);
+    let xd=0;
     //console.log("inizio while approvato: " + approvato);
     while(i<l){
-      collectionesami.count({codice: esami.examList[i].exam_code})
-      .then( (ct) => { if ( ct === 0 ) {
-        console.log("COUNT: " + ct);
+      let tmp = collectionesami.count({codice: esami.examList[i].exam_code})
+      .then( (count) => { if ( count === 0 ) {
+        xd++;
+        console.log("XD: " + xd);
+        console.log("COUNT: " + count);
         //console.log("THISAPPROVATO1: " + this.approvato);
         console.log("APPROVATO1: " + boolObj.valueOf());
         console.log("i1: " + i);
@@ -38,6 +41,7 @@ exports = function(payload, response) {
         i++;
         console.log("i: " + i);
       }}).catch(err => console.error("Failed to count documents: ", err));
+      console.log("TMP: " + tmp);
     };
     /*for(var i=0, l=esami.examList.length; i<l; i++){
       var tmp = collectionesami.count({codice: esami.examList[i].exam_code})

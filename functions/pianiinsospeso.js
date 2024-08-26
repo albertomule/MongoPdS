@@ -1,6 +1,6 @@
 exports = function(payload, response) {
     var collection = context.services.get("mongodb-atlas").db("PortalePdS").collection("Piani");
-    return itemsCollection.find({approvato: false})
+    return collection.find({approvato: false})
     .sort({ matricola: 1 })
     .toArray()
     .then(items => {

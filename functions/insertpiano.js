@@ -1,6 +1,11 @@
 exports = function(payload, response) {
   const {m} = payload.query;
   const {a} = payload.query;
+  const {n} = payload.query;
+  const {c} = payload.query;
+  const {e} = payload.query;
+  const {f} = payload.query;
+  const {d} = payload.query;
   const reqBody = payload.body;
 
   var obj = JSON.parse(reqBody.text());
@@ -30,7 +35,7 @@ exports = function(payload, response) {
     }
     test().then(finalResult => {
         console.log(finalResult);
-      var doc={"matricola": m, "anno": a, "primo": JSON.stringify(obj[0]), "secondo": JSON.stringify(obj[1]), "terzo": JSON.stringify(obj[2]), "comp": JSON.stringify(obj[3]), "esami": JSON.stringify(obj[4]), "approvato": finalResult};
+      var doc={"matricola": m, "anno": a, "primo": JSON.stringify(obj[0]), "secondo": JSON.stringify(obj[1]), "terzo": JSON.stringify(obj[2]), "comp": JSON.stringify(obj[3]), "esami": JSON.stringify(obj[4]), "approvato": finalResult, "nome": n, "cognome": c, "email": e, "fresh": f, "date": d};
     collection.insertOne(doc);
     return doc;
     }).catch(err => {

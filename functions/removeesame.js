@@ -1,16 +1,7 @@
 exports = async function(payload, response) {
-  const {c} = payload.query;
+  const {n} = payload.query;
   var collection = context.services.get("mongodb-atlas").db("PortalePdS").collection("Esami");
-  /*var t = collection.count({codice: c})
-  .then( (cnt) => { if ( cnt !== 0 ) {
-  var doc={"codice": c};
-  collection.deleteOne(doc);
-  return doc;
-  } else {
-  return ("Gia’ presente");
-  } } );
-  return t;*/
-  var query = {"codice": c}
+  var query = {"nome": n}
   return collection.findOneAndDelete(query)
   .then(deletedDocument => {
     if(deletedDocument) {
@@ -23,3 +14,12 @@ exports = async function(payload, response) {
   .catch(err => console.error(`Failed to find and delete document: ${err}`))
 };
 
+  /*var t = collection.count({codice: c})
+  .then( (cnt) => { if ( cnt !== 0 ) {
+  var doc={"codice": c};
+  collection.deleteOne(doc);
+  return doc;
+  } else {
+  return ("Gia’ presente");
+  } } );
+  return t;*/

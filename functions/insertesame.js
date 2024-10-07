@@ -68,7 +68,7 @@ exports = function(payload, response) {
   const {c} = payload.query;
   const {cfu} = payload.query;
   var collection = context.services.get("mongodb-atlas").db("PortalePdS").collection("Esami");
-  var t = collection.count({codice: c})
+  var t = collection.count({nome: n, codice: c})
   .then( (cnt) => { if ( cnt === 0 ) {
   var doc={"nome": n, "codice": c, "cfu": parseInt(cfu)};
   collection.insertOne(doc);

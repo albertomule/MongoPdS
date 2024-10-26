@@ -1,5 +1,6 @@
 exports = function(payload, response) {
     const {a} = payload.query;
+    const {c} = payload.query;
 
     // Raw request body (if the client sent one).
     // This is a binary object that can be accessed as a string using .text()
@@ -23,7 +24,7 @@ exports = function(payload, response) {
   var collection = context.services.get("mongodb-atlas").db("PortalePdS").collection("Regolamenti");
   var t = collection.count({anno: a})
   .then( (cnt) => { if ( cnt === 0 ) {
-    var doc={"anno": a, "esami": reqBody.text(), "primo": JSON.stringify(obj[0]), "secondo": JSON.stringify(obj[1]), "terzo": JSON.stringify(obj[2]), "comp": JSON.stringify(obj[3])};
+    var doc={"anno": a, "esami": reqBody.text(), "primo": JSON.stringify(obj[0]), "secondo": JSON.stringify(obj[1]), "terzo": JSON.stringify(obj[2]), "comp": JSON.stringify(obj[3]), "maxcfu": c};
     collection.insertOne(doc);
     return doc;
     } else {

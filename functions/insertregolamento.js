@@ -1,19 +1,20 @@
 exports = function(payload, response) {
   const {a} = payload.query;
   const {c} = payload.query;
+  const {cc} = payload.query;
   const reqBody = payload.body;
   
   var obj = JSON.parse(reqBody.text())
   var collection = context.services.get("mongodb-atlas").db("PortalePdS").collection("Regolamenti");
   var t = collection.count({anno: a})
   .then( (cnt) => { if ( cnt === 0 ) {
-    var doc={"anno": a, "esami": reqBody.text(), "primo": JSON.stringify(obj[0]), "secondo": JSON.stringify(obj[1]), "terzo": JSON.stringify(obj[2]), "comp": JSON.stringify(obj[3]), "maxcfu": c};
+    var doc={"anno": a, "esami": reqBody.text(), "primo": JSON.stringify(obj[0]), "secondo": JSON.stringify(obj[1]), "terzo": JSON.stringify(obj[2]), "comp": JSON.stringify(obj[3]), "maxcfu": c, "mincfu": cc};
     collection.insertOne(doc);
     return doc;
   } else {
     const query = {anno: a};
     const options = { "returnNewDocument": false };
-    var doc={"anno": a, "esami": reqBody.text(), "primo": JSON.stringify(obj[0]), "secondo": JSON.stringify(obj[1]), "terzo": JSON.stringify(obj[2]), "comp": JSON.stringify(obj[3]), "maxcfu": c};
+    var doc={"anno": a, "esami": reqBody.text(), "primo": JSON.stringify(obj[0]), "secondo": JSON.stringify(obj[1]), "terzo": JSON.stringify(obj[2]), "comp": JSON.stringify(obj[3]), "maxcfu": c, "mincfu": cc};
     return collection.findOneAndReplace(query, doc, options)
     .then(replacedDocument => {
       if(replacedDocument) {

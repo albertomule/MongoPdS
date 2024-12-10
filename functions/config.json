@@ -58,5 +58,10 @@
         "name": "approvapiano",
         "private": true,
         "run_as_system": true
+    },
+    {
+        "name": "rifiutapiano",
+        "private": true,
+        "run_as_system": true
     }
 ]
